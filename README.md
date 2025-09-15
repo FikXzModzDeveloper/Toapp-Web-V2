@@ -11,7 +11,7 @@
 
 ## 📖 Catatan  
 - Intinya mah cuma di **penggantian api** dan **ui di rombak dan sistem di ganti**  
-
+- kalo semisal eror di opload gambar ganti key imgbb lu sndiri dihttps://api.imgbb.com/
 ---
 
 ## 🖼️ Preview
@@ -20,10 +20,17 @@
 ---
 
 ## 📞 Kontak 
-- 📱 WhatsApp: [6288293006543](https://wa.me/6288293006543)  
-- 📷 Instagram: [@fmds_whpz](https://instagram.com/fmds_whpz)  
+- 📱 WhatsApp: [click](https://wa.me/6288293006543)  
+- 📷 Instagram: [click](https://instagram.com/fmds_whpz)  
+
+---
+
+## Saluran aing
+- WhatsApp: [click](https://whatsapp.com/channel/0029Vb6Jjyf8KMqtrGJZJy0y)
+- Telegram: [click](https://t.me/ShareCodesfik)
 
 ---
 
 ## 💡 Support  
 Bantu aing dengan ⭐ star di repo ini dan ikutin chanel wa/tele gw
+asal comot atau jual source code titit/mmk 1 cm awowkwk
