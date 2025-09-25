@@ -249,60 +249,60 @@
       }, 5000);
     }
 
-    async function uploadIcon(file) {
-      uploadStatus.classList.remove('hidden');
-      uploadStatus.textContent = 'Mengunggah ikon...';
-      uploadStatus.className = 'upload-status';
+async function uploadIcon(file) {
+    uploadStatus.classList.remove('hidden');
+    uploadStatus.textContent = 'Mengunggah ikon...';
+    uploadStatus.className = 'upload-status';
 
-      // list upload nyee
-      const uploadServices = [
+    const uploadServices = [
         {
-          name: 'ImgBB',
-          url: 'https://api.imgbb.com/1/upload?key=27b6cd66b77de7e91edcff653e2ba193', // kalo eror ganti key lu sndiri di https://api.imgbb.com/
-          method: 'POST',
-          body: (file) => {
-            const formData = new FormData();
-            formData.append('image', file);
-            return formData;
-          },
-          processResponse: async (response) => {
-            const data = await response.json();
-            return data.data.url;
-          }
-        },
-        {
-          name: 'Catbox',
-          url: 'https://catbox.moe/user/api.php',
-          method: 'POST',
-          body: (file) => {
-            const formData = new FormData();
-            formData.append('fileToUpload', file);
-            formData.append('reqtype', 'fileupload');
-            return formData;
-          },
-          processResponse: async (response) => {
-            return await response.text();
-          }
-        },
-        {
-          name: 'UploadCC',
-          url: 'https://upload.cc/index.php/upload',
-          method: 'POST',
-          body: (file) => {
-            const formData = new FormData();
-            formData.append('uploaded_file[]', file);
-            return formData;
-          },
-          processResponse: async (response) => {
-            const data = await response.json();
-            if (data.success && data.files && data.files.length > 0) {
-              return `https://upload.cc/${data.files[0].hash}`;
+            name: 'ImgBB',
+            url: 'https://api.imgbb.com/1/upload?key=27b6cd66b77de7e91edcff653e2ba193',
+            method: 'POST',
+            body: (file) => {
+                const formData = new FormData();
+                formData.append('image', file);
+                return formData;
+            },
+            processResponse: async (response) => {
+                const data = await response.json();
+                if (!data.success) throw new Error('ImgBB upload failed');
+                return data.data.url;
             }
-            throw new Error('Upload gagal');
-          }
+        },
+        {
+            name: 'Catbox',
+            url: 'https://catbox.moe/user/api.php',
+            method: 'POST',
+            body: (file) => {
+                const formData = new FormData();
+                formData.append('fileToUpload', file);
+                formData.append('reqtype', 'fileupload');
+                return formData;
+            },
+            processResponse: async (response) => {
+                const url = await response.text();
+                if (!url.startsWith('http')) throw new Error('Catbox upload failed');
+                return url;
+            }
+        },
+        {
+            name: 'UploadCC',
+            url: 'https://upload.cc/image_upload',
+            method: 'POST',
+            body: (file) => {
+                const formData = new FormData();
+                formData.append('uploaded_file', file); // Perhatikan key yang benar
+                return formData;
+            },
+            processResponse: async (response) => {
+                const data = await response.json();
+                if (!data.success) throw new Error('UploadCC upload failed');
+                return `https://upload.cc/${data.data.hash}`;
+            }
         }
-      ];
-
+    ];
+    
       for (const service of uploadServices) {
         try {
           uploadStatus.textContent = `Mencoba mengunggah ke ${service.name}...`;
