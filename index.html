@@ -254,6 +254,18 @@ async function uploadIcon(file) {
     uploadStatus.textContent = 'Mengunggah ikon...';
     uploadStatus.className = 'upload-status';
 
+    // Validasi file dulu
+    if (!file || file.size === 0) {
+        uploadStatus.textContent = 'File tidak valid!';
+        throw new Error('File tidak valid');
+    }
+
+    // Cek ukuran file (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+        uploadStatus.textContent = 'File terlalu besar (max 5MB)!';
+        throw new Error('File terlalu besar');
+    }
+
     const uploadServices = [
         {
             name: 'ImgBB',
@@ -266,42 +278,54 @@ async function uploadIcon(file) {
             },
             processResponse: async (response) => {
                 const data = await response.json();
-                if (!data.success) throw new Error('ImgBB upload failed');
+                if (!data.success) {
+                    throw new Error(data.error?.message || 'Upload gagal');
+                }
                 return data.data.url;
             }
         },
         {
-            name: 'Catbox',
-            url: 'https://catbox.moe/user/api.php',
+            name: 'FreeImageHost',
+            url: 'https://freeimage.host/api/1/upload',
             method: 'POST',
             body: (file) => {
                 const formData = new FormData();
-                formData.append('fileToUpload', file);
-                formData.append('reqtype', 'fileupload');
-                return formData;
-            },
-            processResponse: async (response) => {
-                const url = await response.text();
-                if (!url.startsWith('http')) throw new Error('Catbox upload failed');
-                return url;
-            }
-        },
-        {
-            name: 'UploadCC',
-            url: 'https://upload.cc/image_upload',
-            method: 'POST',
-            body: (file) => {
-                const formData = new FormData();
-                formData.append('uploaded_file', file); // Perhatikan key yang benar
+                formData.append('key', '6d207e02198a847aa98d0a2a901485a5'); // Free API key
+                formData.append('action', 'upload');
+                formData.append('source', file);
+                formData.append('format', 'json');
                 return formData;
             },
             processResponse: async (response) => {
                 const data = await response.json();
-                if (!data.success) throw new Error('UploadCC upload failed');
-                return `https://upload.cc/${data.data.hash}`;
+                if (data.status_code !== 200) {
+                    throw new Error(data.error?.message || 'Upload gagal');
+                }
+                return data.image.url;
+            }
+        },
+        {
+            name: 'Imgur (Anonymous)',
+            url: 'https://api.imgur.com/3/image',
+            method: 'POST',
+            headers: {
+                'Authorization': 'Client-ID 546c25a59c58ad7' // Imgur client ID untuk anonymous upload
+            },
+            body: (file) => {
+                const formData = new FormData();
+                formData.append('image', file);
+                formData.append('type', 'file');
+                return formData;
+            },
+            processResponse: async (response) => {
+                const data = await response.json();
+                if (!data.success) {
+                    throw new Error(data.data?.error || 'Upload gagal');
+                }
+                return data.data.link;
             }
         }
-    ];
+    ];    
     
       for (const service of uploadServices) {
         try {
