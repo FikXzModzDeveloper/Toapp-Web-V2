@@ -9,6 +9,9 @@ const progBar    = $('progBar');
 const errorAlert = $('errorAlert');
 const errorMsg   = $('errorMsg');
 const uploadStatus = $('uploadStatus');
+const fileLabel  = $('fileLabel');
+const fileName   = $('fileName');
+const fileError  = $('fileError');
 
 function showError(message) {
   errorMsg.textContent = message;
@@ -45,6 +48,21 @@ function animateProgress(tMin = 3) {
   return () => clearInterval(iv);
 }
 
+function validatePhoto(file) {
+  const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+  const maxSize = 5 * 1024 * 1024; // 5MB
+
+  if (!validTypes.includes(file.type)) {
+    return { valid: false, message: 'cuma photo jir ngapa malah pilih file yang lain😂' };
+  }
+  
+  if (file.size > maxSize) {
+    return { valid: false, message: 'Ukuran Poto nya jan lebih dari 5mb bre' };
+  }
+  
+  return { valid: true };
+}
+
 form.addEventListener('submit', async e => {
   e.preventDefault();
   btn.disabled = true;
@@ -60,6 +78,10 @@ form.addEventListener('submit', async e => {
     const imgFile = $('iconFile').files[0];
 
     if (!imgFile) throw new Error('Pilih ikon dulu');
+    
+    const validation = validatePhoto(imgFile);
+    if (!validation.valid) throw new Error(validation.message);
+    
     try { new URL(url); } catch { throw new Error('URL tidak valid'); }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -109,20 +131,26 @@ package   : ${job.packageName}`;
 
 $('iconFile').addEventListener('change', function () {
   const file = this.files[0];
-  if (!file) return;
-
-  if (!file.type.match('image.*')) {
-    showError('File harus berupa gambar (PNG/JPG)');
-    this.value = '';
-    return;
-  }
-  if (file.size > 5 * 1024 * 1024) {
-    showError('Ukuran file maksimal 5MB');
-    this.value = '';
+  fileError.textContent = '';
+  
+  if (!file) {
+    fileLabel.classList.remove('has-file');
+    fileName.textContent = '';
     return;
   }
 
+  const validation = validatePhoto(file);
+  if (!validation.valid) {
+    fileError.textContent = validation.message;
+    fileLabel.classList.remove('has-file');
+    fileName.textContent = '';
+    this.value = '';
+    return;
+  }
+
+  fileLabel.classList.add('has-file');
+  fileName.textContent = file.name;
   uploadStatus.classList.remove('hidden');
-  uploadStatus.textContent = 'Upload Photo Successfuly: ' + file.name;
+  uploadStatus.textContent = 'File siap diunggah: ' + file.name;
   uploadStatus.className = 'upload-status status-success';
 });
