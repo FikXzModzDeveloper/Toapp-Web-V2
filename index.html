@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Web2APK Builder | FikXzMods</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Konversi website menjadi APK gratis">
+  <meta name="keywords" content="website,toapp,konvert,web2app,free">
+  <meta name="author" content="FikXzMods">
+  <link rel="shortcut icon" href="https://files.catbox.moe/dcujb8.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <i class="fas fa-globe logo-icon"></i>
+      <span class="logo-text">Web2APK Builder</span>
+    </div>
+
+    <form id="builderForm" autocomplete="off">
+      <div class="form-group">
+        <label class="form-label" for="url">URL Website</label>
+        <div class="input-wrap">
+          <i class="fas fa-link input-icon"></i>
+          <input type="url" id="url" class="form-control" placeholder="https://example.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="appName">Nama Aplikasi</label>
+        <div class="input-wrap">
+          <i class="fas fa-mobile-alt input-icon"></i>
+          <input type="text" id="appName" class="form-control" placeholder="MyApp" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email Kamu</label>
+        <div class="input-wrap">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" id="email" class="form-control" placeholder="you@mail.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="iconFile">Ikon Aplikasi</label>
+        <input type="file" id="iconFile" class="form-control" accept="image/*" required>
+        <div id="uploadStatus" class="upload-status hidden"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submitBtn">
+        <i class="fas fa-hammer"></i> Build APK
+      </button>
+    </form>
+
+    <div id="progress" class="progress-box hidden">
+      <p><i class="fas fa-spinner fa-spin"></i> <span id="progText">Mengunggah ikon…</span></p>
+      <div class="progress-bar"><div id="progBar"></div></div>
+    </div>
+
+    <div id="result" class="hidden">
+      <p class="result-text">
+        <i class="fas fa-check-circle" style="color:#22c55e"></i> APK berhasil dibuat!
+      </p>
+      <a id="dlApk" class="btn btn-primary" href="#" download>
+        <i class="fas fa-download"></i> Download APK
+      </a>
+      <details class="info-box">
+        <summary>Info Lainnya</summary>
+        <pre id="keyInfo"></pre>
+      </details>
+    </div>
+
+    <div class="alert hidden" id="errorAlert">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="errorMsg"></span>
+    </div>
+
+    <div class="footer">
+      Powered by <a href="https://api.fikmydomainsz.xyz" target="_blank">FiXzMods</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
