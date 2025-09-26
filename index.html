@@ -44,11 +44,19 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label class="form-label" for="iconFile">Ikon Aplikasi</label>
-        <input type="file" id="iconFile" class="form-control" accept="image/*" required>
-        <div id="uploadStatus" class="upload-status hidden"></div>
-      </div>
+     <div class="form-group">
+      <label class="form-label" for="iconFile">Ikon Aplikasi</label>
+      <div class="file-input-wrapper">
+        <input type="file" id="iconFile" class="form-control" accept="image/jpeg,image/jpg,image/png,image/webp" required>
+        <label for="iconFile" class="file-input-label" id="fileLabel">
+        <i class="fas fa-image"></i> Pilih Photo
+    </label>
+     <div class="file-name" id="fileName"></div>
+     <div class="file-error" id="fileError"></div>
+   </div>
+     <div id="uploadStatus" class="upload-status hidden"></div>
+    </div>
+
 
       <button type="submit" class="btn btn-primary" id="submitBtn">
         <i class="fas fa-hammer"></i> Build APK
