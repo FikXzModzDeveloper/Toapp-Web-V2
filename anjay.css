@@ -189,3 +189,55 @@ body {
   border-radius: 0.4rem;
   overflow: auto;
 }
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-input-wrapper input[type=file] {
+  position: absolute;
+  left: -9999px;
+}
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 2px dashed var(--primary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.file-input-label:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.file-input-label.has-file {
+  background: var(--success);
+  color: white;
+  border-color: var(--success);
+}
+
+.file-name {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--gray);
+  text-align: center;
+}
+
+.file-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
