@@ -151,6 +151,6 @@ $('iconFile').addEventListener('change', function () {
   fileLabel.classList.add('has-file');
   fileName.textContent = file.name;
   uploadStatus.classList.remove('hidden');
-  uploadStatus.textContent = 'File siap diunggah: ' + file.name;
+  // uploadStatus.textContent = 'File: ' + file.name;
   uploadStatus.className = 'upload-status status-success';
 });
