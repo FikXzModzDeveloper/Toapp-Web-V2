@@ -8,11 +8,13 @@
   --gray-light: #e2e8f0;
   --success: #22c55e;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #f1f5f9;
@@ -22,65 +24,76 @@ body {
   min-height: 100vh;
   padding: 2rem 1rem;
 }
+
 .card {
   width: 100%;
   max-width: 420px;
   background: white;
   border-radius: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.5s ease-out forwards;
 }
+
 @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .logo {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
+
 .logo-icon {
   font-size: 1.75rem;
   color: var(--primary);
 }
+
 .logo-text {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--dark);
 }
+
 .form-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
+
 .form-label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--dark);
 }
+
 .input-wrap {
   position: relative;
 }
+
 .form-control {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  padding: 0.8rem 1rem 0.8rem 2.75rem;
   border: 1px solid var(--gray-light);
   border-radius: 0.5rem;
   font-size: 0.95rem;
   transition: all 0.3s ease;
 }
+
 .form-control:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
 }
+
 .input-icon {
   position: absolute;
   top: 50%;
@@ -89,9 +102,10 @@ body {
   color: var(--gray);
   font-size: 1rem;
 }
+
 .btn {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.85rem;
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
@@ -103,20 +117,24 @@ body {
   gap: 0.5rem;
   transition: background 0.3s ease;
 }
+
 .btn-primary {
   background: var(--primary);
   color: white;
 }
+
 .btn-primary:hover {
   background: #3a56d4;
 }
+
 .btn:disabled {
   background: var(--gray-light);
   color: var(--gray);
   cursor: not-allowed;
 }
+
 .alert {
-  padding: 0.9rem;
+  padding: 1rem;
   border-left: 4px solid var(--danger);
   background: #fee2e2;
   color: var(--danger);
@@ -127,15 +145,18 @@ body {
   align-items: center;
   gap: 0.75rem;
 }
+
 .hidden {
   display: none;
 }
+
 .progress-box {
   text-align: center;
   margin-top: 1.5rem;
   font-size: 0.95rem;
   color: var(--gray);
 }
+
 .progress-bar {
   height: 6px;
   background: var(--gray-light);
@@ -143,52 +164,63 @@ body {
   overflow: hidden;
   margin-top: 0.5rem;
 }
+
 .progress-bar div {
   height: 100%;
   background: var(--primary);
   width: 0%;
   transition: width 0.3s ease;
 }
+
 .footer {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   text-align: center;
   font-size: 0.85rem;
   color: var(--gray);
 }
+
 .footer a {
   color: var(--primary);
   text-decoration: none;
 }
+
 .footer a:hover {
   text-decoration: underline;
 }
+
 .upload-status {
   font-size: 0.85rem;
   margin-top: 0.5rem;
   color: var(--gray);
 }
+
 .status-success {
   color: var(--success);
 }
+
 .status-error {
   color: var(--danger);
 }
+
 .result-text {
   margin-top: 1.5rem;
   font-size: 0.95rem;
   color: var(--dark);
 }
+
 .info-box {
   margin-top: 1rem;
   font-size: 0.8rem;
   color: var(--gray);
 }
+
 .info-box pre {
   background: #f6f8fa;
   padding: 0.7rem;
   border-radius: 0.4rem;
   overflow: auto;
 }
+
 .file-input-wrapper {
   position: relative;
   overflow: hidden;
@@ -207,7 +239,7 @@ body {
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.85rem;
   background: var(--primary-light);
   color: var(--primary);
   border: 2px dashed var(--primary);
