@@ -20,7 +20,7 @@
 ---
 
 ## 📞 Kontak 
-- 📱 WhatsApp: [click](https://wa.me/6288293006543)  
+- 📱 WhatsApp: [click](https://wa.me/628973965618)  
 - 📷 Instagram: [click](https://instagram.com/fmds_whpz)  
 
 ---
